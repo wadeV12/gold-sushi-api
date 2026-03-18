@@ -12,14 +12,13 @@ import * as cors from 'cors';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.use(cors({
-    origin: [
-      'http://localhost:3000',
-      process.env.FORTEND_URL,
-    ],
-    methods: 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-    allowedHeaders: 'Content-Type, Authorization',
-  }));
+  app.use(
+    cors({
+      origin: ['http://localhost:3000', process.env.FRONTEND_URL],
+      methods: 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      allowedHeaders: 'Content-Type, Authorization',
+    }),
+  );
 
   app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe({
